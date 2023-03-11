@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Assignment 1</title>
+    <style>
+      .sidediv{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 100%;
+        background-color: #f2f2f2;
+      }
+
+      .main-content {
+        margin-left: 200px;
+      }
+
+      .site {
+        display: none;
+      }
+
+      .site.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidediv">
+      <ul>
+        <li><a href="about.html" data-page="about">About</a></li>
+        <li><a href="contact.html" data-page="contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="main-content">
+      <div id="about" class="site">About Page</div>
+      <div id="contact" class="site">Contact Page</div>
+    </div>
+    <script>
+      const site = document.querySelectorAll('.sidediv a');
+      const pages = document.querySelectorAll('.site');
+
+      site.forEach(link => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+
+          const page_id = link.getAttribute('data-page');
+          const page = document.getElementById(page_id);
+
+          pages.forEach(page => {
+            page.classList.remove('active');
+          });
+
+          page.classList.add('active');
+        });
+      });
+    </script>
+  </body>
+</html>
